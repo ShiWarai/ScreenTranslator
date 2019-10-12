@@ -37,17 +37,17 @@
             // 
             this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
             this.NotifyIcon.Visible = true;
-            this.NotifyIcon.DoubleClick += new System.EventHandler(this.NotifyIcon_DoubleClick);
             // 
             // NotificationWin
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(190, 128);
+            this.ClientSize = new System.Drawing.Size(0, 0);
             this.ControlBox = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NotificationWin";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.ResumeLayout(false);
 
         }

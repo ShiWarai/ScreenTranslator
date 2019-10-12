@@ -34,15 +34,5 @@ namespace ScreenTranslator_MainApp.View
             }
         }
 
-        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            var Nof = new NotificationManager();
-            Nof.Show(new NotificationContent
-            {
-                Title = "title",
-                Message = "message",
-                Type = NotificationType.Information
-            });
-        }
     }
 }

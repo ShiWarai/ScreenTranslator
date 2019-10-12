@@ -37,8 +37,13 @@ namespace ScreenTranslator_MainApp.View
         public MainWindow()
         {
             InitializeComponent();
-            this.SetupLanguageDependences();
-            string a = CultureInfo.CurrentCulture.DisplayName;
+            SetupLanguageDependences();
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private bool SetupLanguageDependences() // Настройка переменных, зависящих от языка приложения
@@ -65,16 +70,26 @@ namespace ScreenTranslator_MainApp.View
         }
         private void Minimized()
         {
-            // ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
-            var notification_window = new NotificationWin(this);
-            notification_window.Show();
-            notification_window.Hide();
-            this.MainNotification = notification_window;
+            ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
+            try
+            {
+                this.MainNotification = new NotificationWin(this);
+                this.MainNotification.Show();
+                this.MainNotification.Hide();
+            }
+            catch{}
         }
 
         private void Maximized()
         {
-            this.MainNotification.Close();
+            try
+            {
+                this.MainNotification.Close();
+            }
+            catch
+            {
+
+            }
         }
 
         public void ShowNotification(string title,string message,NotificationType type)
