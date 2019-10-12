@@ -57,8 +57,13 @@
     <ApplicationIcon>Properties\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Notifications.Wpf.0.1.1\lib\net45\Notifications.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,6 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\NotificationWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NotificationWin.Designer.cs">
+      <DependentUpon>NotificationWin.cs</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,6 +115,10 @@
     <EmbeddedResource Include="Lang\lang.resx" />
     <EmbeddedResource Include="Lang\lang.ru.resx" />
     <EmbeddedResource Include="Lang\lang.en.resx" />
+    <EmbeddedResource Include="View\NotificationWin.resx">
+      <DependentUpon>NotificationWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,7 +130,6 @@
   <ItemGroup>
     <Resource Include="Properties\icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
