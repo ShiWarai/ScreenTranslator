@@ -15,8 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScreenTranslator_MainApp.ViewModel;
 
-namespace ScreenTranslator_MainApp
+namespace ScreenTranslator_MainApp.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
