@@ -25,10 +25,10 @@ namespace ScreenTranslator_MainApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int Language {
+        [global::System.Configuration.DefaultSettingValueAttribute("ru")]
+        public string Language {
             get {
-                return ((int)(this["Language"]));
+                return ((string)(this["Language"]));
             }
         }
     }

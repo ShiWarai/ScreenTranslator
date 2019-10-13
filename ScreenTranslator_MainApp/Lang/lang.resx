@@ -123,4 +123,19 @@
   <data name="Author" xml:space="preserve">
     <value>by ShiWarai</value>
   </data>
+  <data name="LanguageTitle" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="DoneTitle" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ActivationButtonsTitle" xml:space="preserve">
+    <value>Activation buttons</value>
+  </data>
+  <data name="TranslateWayTitle" xml:space="preserve">
+    <value>Translation way</value>
+  </data>
+  <data name="LogWayTitle" xml:space="preserve">
+    <value>Location to save logs file</value>
+  </data>
 </root>

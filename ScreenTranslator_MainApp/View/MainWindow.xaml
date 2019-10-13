@@ -4,8 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScreenTranslator_MainApp"
-        mc:Ignorable="d" Width="400" Icon="/ScreenTranslator_MainApp;component/Properties/icon.ico" Height="{Binding Width, ElementName=Main_Window}" ResizeMode="CanMinimize" StateChanged="Main_Window_StateChanged" WindowStartupLocation="CenterScreen">
+        xmlns:vm ="clr-namespace:ScreenTranslator_MainApp.ViewModel"
+        mc:Ignorable="d" Width="400" Icon="/ScreenTranslator_MainApp;component/Properties/icon.ico" 
+        Height="{Binding Width, ElementName=Main_Window}" 
+        ResizeMode="CanMinimize" 
+        StateChanged="Main_Window_StateChanged" 
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainWindowVM/>
+    </Window.DataContext>
     <Grid x:Name="Main_Grid">
-        <TextBox x:Name="Text_Box" HorizontalAlignment="Left" Height="88" Margin="10,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="374" FontSize="20" FontFamily="Arial"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="Stack" Grid.Column="1" Grid.Row="1">
+            <DockPanel x:Name="LanguagePanel" Height="50" LastChildFill="False" Width="{Binding ActualWidth, ElementName=Stack, Mode=OneWay}">
+                <Label x:Name="LanguageTitle" Content="Label&#xA;" Height="{Binding ActualHeight, ElementName=LanguagePanel, Mode=OneWay}" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="LanguageSelect" Height="{Binding ActualHeight, ElementName=LanguageTitle, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,0,10,0" SelectedIndex="0" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="2">
+                    <TextBlock Text="1"/>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel x:Name="TranslateWayPanel" Height="53" LastChildFill="False">
+                <Label x:Name="TranslateWayTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
+                <ComboBox x:Name="TranslateWaySelect" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}" VerticalAlignment="Top" Width="120">
+                    <TextBlock Text="1"/>
+                    <TextBlock Text="2"/>
+                    <TextBlock Text="3"/>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel x:Name="KeyComnPanel" Height="53" LastChildFill="False">
+                <Label x:Name="KeyCombTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
+                <TextBox x:Name="KeyCombSelect" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </DockPanel>
+            <DockPanel x:Name="LogWayPanel" Height="53" LastChildFill="False">
+                <Label x:Name="LogWayTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
+                <TextBox x:Name="LogWayView" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+                <Button Content="..." VerticalAlignment="Top" Margin="0,0,10,0" Height="40"/>
+            </DockPanel>
+            <Grid Height="100">
+                <Button x:Name="DoneButton" Content="Button" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

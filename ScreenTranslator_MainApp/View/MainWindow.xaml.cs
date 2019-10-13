@@ -52,7 +52,12 @@ namespace ScreenTranslator_MainApp.View
                 this.LanguageResource = new ResourceManager("ScreenTranslator_MainApp.Lang.lang", Assembly.GetExecutingAssembly());
             try
             {
-                Title = LanguageResource.GetString("Title");
+                this.Title = LanguageResource.GetString("Title");
+                LanguageTitle.Content = LanguageResource.GetString("LanguageTitle");
+                TranslateWayTitle.Content = LanguageResource.GetString("TranslateWayTitle");
+                KeyCombTitle.Content = LanguageResource.GetString("ActivationButtonsTitle");
+                DoneButton.Content = LanguageResource.GetString("DoneTitle");
+                LogWayTitle.Content = LanguageResource.GetString("LogWayTitle");
                 return true;
             }
             catch

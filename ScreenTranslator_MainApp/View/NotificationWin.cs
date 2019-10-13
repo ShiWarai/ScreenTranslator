@@ -39,7 +39,7 @@ namespace ScreenTranslator_MainApp.View
         {
             this.Last_Window.Show();
             this.Last_Window.WindowState = System.Windows.WindowState.Normal;
-            this.Last_Window.Text_Box.Text = (new MainWindowVM()).ClipboardTranslate();
+            this.Last_Window.Activate();
         }
     }
 }
