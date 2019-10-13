@@ -70,6 +70,7 @@ namespace ScreenTranslator_MainApp.View
         }
         private void Minimized()
         {
+            this.Hide();
             ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
             try
             {
@@ -92,7 +93,7 @@ namespace ScreenTranslator_MainApp.View
             }
         }
 
-        public void ShowNotification(string title,string message,NotificationType type)
+        private void ShowNotification(string title,string message,NotificationType type)
         {
             var notification = new NotificationManager();
             notification.Show(new NotificationContent

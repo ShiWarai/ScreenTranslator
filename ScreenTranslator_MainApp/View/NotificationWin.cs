@@ -34,5 +34,10 @@ namespace ScreenTranslator_MainApp.View
             }
         }
 
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Last_Window.Show();
+            this.Last_Window.WindowState = System.Windows.WindowState.Normal;
+        }
     }
 }
