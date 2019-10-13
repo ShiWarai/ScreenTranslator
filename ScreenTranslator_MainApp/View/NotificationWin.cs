@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Notifications.Wpf;
+using ScreenTranslator_MainApp.ViewModel;
 
 namespace ScreenTranslator_MainApp.View
 {
@@ -38,6 +39,7 @@ namespace ScreenTranslator_MainApp.View
         {
             this.Last_Window.Show();
             this.Last_Window.WindowState = System.Windows.WindowState.Normal;
+            this.Last_Window.Text_Box.Text = (new MainWindowVM()).ClipboardTranslate();
         }
     }
 }

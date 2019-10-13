@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:ScreenTranslator_MainApp"
         mc:Ignorable="d" Width="400" Icon="/ScreenTranslator_MainApp;component/Properties/icon.ico" Height="{Binding Width, ElementName=Main_Window}" ResizeMode="CanMinimize" StateChanged="Main_Window_StateChanged" WindowStartupLocation="CenterScreen">
     <Grid x:Name="Main_Grid">
-        
+        <TextBox x:Name="Text_Box" HorizontalAlignment="Left" Height="88" Margin="10,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="374" FontSize="20" FontFamily="Arial"/>
     </Grid>
 </Window>
