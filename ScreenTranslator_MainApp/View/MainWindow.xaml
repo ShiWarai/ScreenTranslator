@@ -8,10 +8,9 @@
         mc:Ignorable="d" Width="400" Icon="/ScreenTranslator_MainApp;component/Properties/icon.ico" 
         Height="{Binding Width, ElementName=Main_Window}" 
         ResizeMode="CanMinimize" 
-        StateChanged="Main_Window_StateChanged" 
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" WindowState="{Binding MainWindowState,Mode=OneWayToSource}" ShowInTaskbar="False">
     <Window.DataContext>
-        <vm:MainWindowVM/>
+        <vm:AppManager/>
     </Window.DataContext>
     <Grid x:Name="Main_Grid">
         <Grid.RowDefinitions>

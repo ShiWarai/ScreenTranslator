@@ -16,7 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ScreenTranslator_MainApp.ViewModel;
-using Notifications.Wpf;
+using System.Windows.Forms;
+using System.IO;
 
 namespace ScreenTranslator_MainApp.View
 {
@@ -25,88 +26,25 @@ namespace ScreenTranslator_MainApp.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ResourceManager LanguageResource;
-        private NotificationWin MainNotification;
-
-        public ResourceManager GetLanguageResource
-        {
-            get { return this.LanguageResource; }
-        }
-
-
+        public NotifyIcon Notify;
         public MainWindow()
         {
             InitializeComponent();
-            SetupLanguageDependences();
-            this.Closing += MainWindow_Closing;
+            AdditionalInitialize();
         }
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /// <summary>
+        /// Additional UI initialize of WinForms objects
+        /// </summary>
+        private void AdditionalInitialize()
         {
-            Environment.Exit(0);
-        }
-
-        private bool SetupLanguageDependences() // Настройка переменных, зависящих от языка приложения
-        {
-            if (LanguageResource==null)
-                this.LanguageResource = new ResourceManager("ScreenTranslator_MainApp.Lang.lang", Assembly.GetExecutingAssembly());
-            try
+            this.Notify = new NotifyIcon();
+            using (Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ScreenTranslator_MainApp;component/Properties/icon_w.ico")).Stream)
             {
-                this.Title = LanguageResource.GetString("Title");
-                LanguageTitle.Content = LanguageResource.GetString("LanguageTitle");
-                TranslateWayTitle.Content = LanguageResource.GetString("TranslateWayTitle");
-                KeyCombTitle.Content = LanguageResource.GetString("ActivationButtonsTitle");
-                DoneButton.Content = LanguageResource.GetString("DoneTitle");
-                LogWayTitle.Content = LanguageResource.GetString("LogWayTitle");
-                return true;
+                this.Notify.Icon = new System.Drawing.Icon(iconStream);
             }
-            catch
-            {
-                return false;
-            }
+            this.Notify.Visible = false;
         }
 
-        private void Main_Window_StateChanged(object sender, EventArgs e)
-        {
-            if (this.WindowState == WindowState.Minimized)
-                Minimized();
-            else if (this.WindowState == WindowState.Normal)
-                Maximized();
-        }
-        private void Minimized()
-        {
-            this.Hide();
-            ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
-            try
-            {
-                this.MainNotification = new NotificationWin(this);
-                this.MainNotification.Show();
-                this.MainNotification.Hide();
-            }
-            catch{}
-        }
-
-        private void Maximized()
-        {
-            try
-            {
-                this.MainNotification.Close();
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void ShowNotification(string title,string message,NotificationType type)
-        {
-            var notification = new NotificationManager();
-            notification.Show(new NotificationContent
-            {
-                Title = title,
-                Message = message,
-                Type = type
-            });
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace ScreenTranslator_MainApp.Model
         {
             this.Key = key;
         }
-        public string Translate(string text="",string translation_code="en-ru")
+        public string Translate(string text="",string translation_code="ru")
         {
             if (text.Length > 0)
             {
