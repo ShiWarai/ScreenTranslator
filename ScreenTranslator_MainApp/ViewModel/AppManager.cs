@@ -28,7 +28,15 @@ namespace ScreenTranslator_MainApp.ViewModel
             SetupLanguageDependences();
             MainWin.DoneButton.Click += DoneButton_Click;
             MainWin.StateChanged += MainWindowState;
+            MainWin.TestButton.Click += TestButton_Click;
             await MainWin.Dispatcher.InvokeAsync(() => MainWin.ShowDialog());
+        }
+
+        private void TestButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a rectangle of cursor positions
+            (MouseCoordinates FirstPos,MouseCoordinates SecondPos) Coordinates = MouseAndKeyboardTracking.CreateCursorRectangle();
+            MainWin.KeyCombSelect.Text = Translator.Translate((new ScreenText(Coordinates)).FoundText);
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
@@ -40,12 +48,6 @@ namespace ScreenTranslator_MainApp.ViewModel
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string ClipboardTranslate()
-        {
-            string text = Clipboard.GetText();
-            return (new Translator("trnsl.1.1.20191013T000841Z.a1691e726d3b0db8.19a9f0b65a94f0e6f7aea4f246947a0b3fe1ee84")).Translate(text, Properties.Settings.Default.Language);
         }
 
         public void MainWindowState(object sender, EventArgs e)
@@ -73,6 +75,7 @@ namespace ScreenTranslator_MainApp.ViewModel
                 MainWin.Notify.Visible = true;
                 MainWin.Notify.Click += Notify_Click;
                 MainWin.WindowState = WindowState.Minimized;
+                MainWin.ShowInTaskbar = false;
             }
             catch { }
         }
@@ -89,6 +92,7 @@ namespace ScreenTranslator_MainApp.ViewModel
             try
             {
                 MainWin.Notify.Visible = false;
+                MainWin.ShowInTaskbar = true;
             }
             catch { }
         }

@@ -8,7 +8,7 @@
         mc:Ignorable="d" Width="400" Icon="/ScreenTranslator_MainApp;component/Properties/icon.ico" 
         Height="{Binding Width, ElementName=Main_Window}" 
         ResizeMode="CanMinimize" 
-        WindowStartupLocation="CenterScreen" WindowState="{Binding MainWindowState,Mode=OneWayToSource}" ShowInTaskbar="False">
+        WindowStartupLocation="CenterScreen" WindowState="{Binding MainWindowState,Mode=OneWayToSource}">
     <Window.DataContext>
         <vm:AppManager/>
     </Window.DataContext>
@@ -48,7 +48,8 @@
                 <Button Content="..." VerticalAlignment="Top" Margin="0,0,10,0" Height="40"/>
             </DockPanel>
             <Grid Height="100">
-                <Button x:Name="DoneButton" Content="Button" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
+                <Button x:Name="DoneButton" Content="Button" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" IsDefault="True"/>
+                <Button x:Name="TestButton" Content="Скриншот" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="75"/>
             </Grid>
         </StackPanel>
     </Grid>

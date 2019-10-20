@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using ScreenTranslator_MainApp.ViewModel;
 
 namespace ScreenTranslator_MainApp.Model
 {
-    struct Translation
+    internal struct Translation
     {
         public string code { get; set; }
         public string lang { get; set; }
@@ -19,17 +13,14 @@ namespace ScreenTranslator_MainApp.Model
 
     public class Translator
     {
-        private string Key;
-        public Translator(string key)
-        {
-            this.Key = key;
-        }
-        public string Translate(string text="",string translation_code="ru")
+        static private string Key = "trnsl.1.1.20191013T000841Z.a1691e726d3b0db8.19a9f0b65a94f0e6f7aea4f246947a0b3fe1ee84";
+
+        static public string Translate(string text = "", string translation_code = "ru")
         {
             if (text.Length > 0)
             {
                 WebRequest request = WebRequest.Create("https://translate.yandex.net/api/v1.5/tr.json/translate?"
-                    + "key=" + this.Key
+                    + "key=" + Translator.Key
                     + "&text=" + text
                     + "&lang=" + translation_code);
 
