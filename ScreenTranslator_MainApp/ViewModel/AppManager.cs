@@ -10,17 +10,15 @@ using ScreenTranslator_MainApp.Model;
 using ScreenTranslator_MainApp.View;
 using Notifications.Wpf;
 using System.Resources;
-using System.Reflection;
-using System.IO;
+using System.Windows.Forms;
 
 namespace ScreenTranslator_MainApp.ViewModel
 {
     public class AppManager : INotifyPropertyChanged
     {
-        public MainWindow MainWin;
-        private ResourceManager LanguageResource;
-
-        public ResourceManager GetLanguageResource { get { return LanguageResource; } }
+        public MainWindow MainWin; // Основное окно
+        private LanguageData LanguageResource;
+        private KeyboardHooking KeyHook = new KeyboardHooking();
 
         public async Task ShowWindow() 
         {
@@ -28,15 +26,8 @@ namespace ScreenTranslator_MainApp.ViewModel
             SetupLanguageDependences();
             MainWin.DoneButton.Click += DoneButton_Click;
             MainWin.StateChanged += MainWindowState;
-            MainWin.TestButton.Click += TestButton_Click;
+            KeyHook.Start(Keys.G, new NotificatorScreenText());
             await MainWin.Dispatcher.InvokeAsync(() => MainWin.ShowDialog());
-        }
-
-        private void TestButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Create a rectangle of cursor positions
-            (MouseCoordinates FirstPos,MouseCoordinates SecondPos) Coordinates = MouseAndKeyboardTracking.CreateCursorRectangle();
-            MainWin.KeyCombSelect.Text = Translator.Translate((new ScreenText(Coordinates)).FoundText);
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
@@ -69,7 +60,7 @@ namespace ScreenTranslator_MainApp.ViewModel
 
         private void Minimized()
         {
-            ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
+            Notificator.ShowNotification(LanguageResource.GetString("Title"), "Window has been minimized, but still working!", NotificationType.Warning);
             try
             {
                 MainWin.Notify.Visible = true;
@@ -99,8 +90,7 @@ namespace ScreenTranslator_MainApp.ViewModel
 
         private bool SetupLanguageDependences() // Настройка переменных, зависящих от языка приложения
         {
-            if (LanguageResource == null)
-                this.LanguageResource = new ResourceManager("ScreenTranslator_MainApp.Lang.lang", Assembly.GetExecutingAssembly());
+            LanguageResource = new LanguageData();
             try
             {
                 MainWin.Title = LanguageResource.GetString("Title");
@@ -117,20 +107,5 @@ namespace ScreenTranslator_MainApp.ViewModel
             }
         }
 
-        private void ShowNotification(string title, string message, NotificationType type)
-        {
-            var notification = new NotificationManager();
-            notification.Show(new NotificationContent
-            {
-                Title = title,
-                Message = message,
-                Type = type
-            });
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

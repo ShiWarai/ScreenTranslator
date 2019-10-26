@@ -138,4 +138,7 @@
   <data name="LogWayTitle" xml:space="preserve">
     <value>Location to save logs file</value>
   </data>
+  <data name="aTranslation" xml:space="preserve">
+    <value>Translation</value>
+  </data>
 </root>

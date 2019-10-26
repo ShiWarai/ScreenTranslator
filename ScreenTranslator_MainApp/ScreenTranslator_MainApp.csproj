@@ -159,10 +159,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\ClipboardText.cs" />
-    <Compile Include="Model\MouseAndKeyboardTracking.cs" />
+    <Compile Include="Model\KeyboardHooking.cs" />
+    <Compile Include="Model\LanguageData.cs" />
+    <Compile Include="Model\MouseTracking.cs" />
+    <Compile Include="Model\Notificator.cs" />
+    <Compile Include="Model\NotificatorClipboardText.cs" />
+    <Compile Include="Model\NotificatorScreenText.cs" />
     <Compile Include="Model\ScreenText.cs" />
     <Compile Include="Model\TextInitor.cs" />
     <Compile Include="Model\Translator.cs" />
+    <Compile Include="Model\WaitingForKeyEvent.cs" />
     <Compile Include="ViewModel\AppManager.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

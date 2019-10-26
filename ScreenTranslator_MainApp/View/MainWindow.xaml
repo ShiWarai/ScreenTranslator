@@ -49,7 +49,6 @@
             </DockPanel>
             <Grid Height="100">
                 <Button x:Name="DoneButton" Content="Button" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" IsDefault="True"/>
-                <Button x:Name="TestButton" Content="Скриншот" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="75"/>
             </Grid>
         </StackPanel>
     </Grid>

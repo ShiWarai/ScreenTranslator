@@ -16,10 +16,10 @@ namespace ScreenTranslator_MainApp.Model
         /// <summary>
         /// x0,y0,x1,y1 are screen coordinates of text
         /// </summary>
-        public ScreenText((MouseCoordinates FirstPos, MouseCoordinates SecondPos) coordinates) : base()
+        public ScreenText(MouseRectangle coordinates) : base()
         {
-            found_text = 
-                TextFromImage(ScreenShot(coordinates.FirstPos.X, coordinates.FirstPos.Y, coordinates.SecondPos.X, coordinates.SecondPos.Y));
+            text = 
+                TextFromImage(ScreenShot(coordinates.First.X, coordinates.First.Y, coordinates.Second.X, coordinates.Second.Y));
         }
 
         private string TextFromImage(Image image)
@@ -32,26 +32,20 @@ namespace ScreenTranslator_MainApp.Model
         private Image ScreenShot(int x0,int y0,int x1,int y1)
         {
             System.Drawing.Image BM = Pranas.ScreenshotCapture.TakeScreenshot();
-            BM = this.Crop(BM,new Rectangle(x0,y0,x1,y1));
-            BM.Save("temp.png");
+            BM = CutImage(new Bitmap(BM),new Rectangle(x0,y0,x1,y1));
             return BM;
         }
 
-        private System.Drawing.Image Crop(System.Drawing.Image image, Rectangle selection)
+        private Bitmap CutImage(Bitmap src, Rectangle rect)
         {
-            Bitmap bmp = image as Bitmap;
 
-            // Check if it is a bitmap:
-            if (bmp == null)
-                throw new ArgumentException("No valid bitmap");
+            Bitmap bmp = new Bitmap(src.Width, src.Height); //создаем битмап
 
-            // Crop the image:
-            Bitmap cropBmp = bmp.Clone(selection, bmp.PixelFormat);
+            Graphics g = Graphics.FromImage(bmp);
 
-            // Release the resources:
-            image.Dispose();
+            g.DrawImage(src, 0, 0, rect, GraphicsUnit.Pixel); //перерисовываем с источника по координатам
 
-            return cropBmp;
+            return bmp;
         }
     }
 }

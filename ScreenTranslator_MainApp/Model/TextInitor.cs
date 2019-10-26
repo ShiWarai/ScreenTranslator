@@ -10,14 +10,14 @@ namespace ScreenTranslator_MainApp.Model
     abstract class TextInitor
     {
         protected string text;
-        protected string found_text;
+        protected string translated_text;
 
-        public string FoundText { 
+        public string TranslatedText { 
             get 
             {
-                if (found_text == null)
+                if (translated_text == null)
                     Translate();
-                return found_text;
+                return translated_text;
             } 
         }
 
@@ -25,7 +25,7 @@ namespace ScreenTranslator_MainApp.Model
         {
             try
             {
-                found_text = Translator.Translate(text, Properties.Settings.Default.Language);
+                translated_text = Translator.Translate(text, Properties.Settings.Default.Language);
                 return true;
             }
             catch
