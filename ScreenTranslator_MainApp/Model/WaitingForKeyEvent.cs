@@ -23,10 +23,18 @@ namespace ScreenTranslator_MainApp.Model
             switch (event_)
             {
                 case Events.KeyDown:
-                    this.ActivatorEvent.Invoke();
+                    try
+                    {
+                        this.ActivatorEvent.Invoke();
+                    }
+                    catch { }
                     break;
                 case Events.KeyUp:
-                    this.DeactivatorEvent.Invoke();
+                    try
+                    {
+                        this.DeactivatorEvent.Invoke();
+                    }
+                    catch { }
                     break;
             }
             

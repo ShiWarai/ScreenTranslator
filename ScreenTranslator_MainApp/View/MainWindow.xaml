@@ -26,29 +26,23 @@
         <StackPanel x:Name="Stack" Grid.Column="1" Grid.Row="1">
             <DockPanel x:Name="LanguagePanel" Height="50" LastChildFill="False" Width="{Binding ActualWidth, ElementName=Stack, Mode=OneWay}">
                 <Label x:Name="LanguageTitle" Content="Label&#xA;" Height="{Binding ActualHeight, ElementName=LanguagePanel, Mode=OneWay}" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="LanguageSelect" Height="{Binding ActualHeight, ElementName=LanguageTitle, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,0,10,0" SelectedIndex="0" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="2">
-                    <TextBlock Text="1"/>
-                </ComboBox>
+                <ComboBox x:Name="LanguageSelect" Height="{Binding ActualHeight, ElementName=LanguageTitle, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,0,10,0" SelectedIndex="{Binding Path=SelectedLanguageIndex, Mode=OneWayToSource}" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" Panel.ZIndex="2"/>
             </DockPanel>
             <DockPanel x:Name="TranslateWayPanel" Height="53" LastChildFill="False">
                 <Label x:Name="TranslateWayTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
-                <ComboBox x:Name="TranslateWaySelect" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}" VerticalAlignment="Top" Width="120">
-                    <TextBlock Text="1"/>
-                    <TextBlock Text="2"/>
-                    <TextBlock Text="3"/>
-                </ComboBox>
+                <ComboBox x:Name="TranslateWaySelect" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedMethodIndex, Mode=OneWayToSource}" VerticalAlignment="Top" Width="120"/>
             </DockPanel>
             <DockPanel x:Name="KeyComnPanel" Height="53" LastChildFill="False">
                 <Label x:Name="KeyCombTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
-                <TextBox x:Name="KeyCombSelect" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="KeyCombSelect" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             </DockPanel>
             <DockPanel x:Name="LogWayPanel" Height="53" LastChildFill="False">
                 <Label x:Name="LogWayTitle" Content="Label" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=TranslateWayPanel, Mode=OneWay}"/>
-                <TextBox x:Name="LogWayView" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-                <Button Content="..." VerticalAlignment="Top" Margin="0,0,10,0" Height="40"/>
+                <TextBox x:Name="LogWayView" Height="{Binding ActualHeight, ElementName=KeyComnPanel, Mode=OneWay}" IsEnabled="{Binding IsChecked, ElementName=LoggerIsEnabled}" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsReadOnly="True"/>
+                <Button x:Name="ChangeLogWay" Content="..." VerticalAlignment="Top" Margin="0,0,10,0" Height="40" IsEnabled="{Binding IsChecked, ElementName=LoggerIsEnabled}" />
             </DockPanel>
             <Grid Height="100">
-                <Button x:Name="DoneButton" Content="Button" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" IsDefault="True"/>
+                <CheckBox x:Name="LoggerIsEnabled" Content="CheckBox" Height="53" VerticalAlignment="Top" IsChecked="{Binding LoggerIsEnabled, Mode=OneWayToSource}" Margin="0" HorizontalAlignment="Left"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -2,8 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ScreenTranslator_MainApp.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Language" Type="System.String" Scope="Application">
+    <Setting Name="Language" Type="System.String" Scope="User">
       <Value Profile="(Default)">ru</Value>
+    </Setting>
+    <Setting Name="TranslationWay" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Clipboard</Value>
+    </Setting>
+    <Setting Name="KeyComb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G</Value>
+    </Setting>
+    <Setting Name="LogWay" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LoggerIsEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

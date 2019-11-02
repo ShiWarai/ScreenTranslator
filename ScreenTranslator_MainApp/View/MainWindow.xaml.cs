@@ -30,21 +30,6 @@ namespace ScreenTranslator_MainApp.View
         public MainWindow()
         {
             InitializeComponent();
-            AdditionalInitialize();
         }
-
-        /// <summary>
-        /// Additional UI initialize of WinForms objects
-        /// </summary>
-        private void AdditionalInitialize()
-        {
-            this.Notify = new NotifyIcon();
-            using (Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ScreenTranslator_MainApp;component/Properties/icon_w.ico")).Stream)
-            {
-                this.Notify.Icon = new System.Drawing.Icon(iconStream);
-            }
-            this.Notify.Visible = false;
-        }
-
     }
 }

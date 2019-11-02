@@ -123,4 +123,37 @@
   <data name="aTranslation" xml:space="preserve">
     <value>Перевод</value>
   </data>
+  <data name="LogWayTitle" xml:space="preserve">
+    <value>Путь до файла логов</value>
+  </data>
+  <data name="TranslateWayTitle" xml:space="preserve">
+    <value>Способ перевода</value>
+  </data>
+  <data name="ActivationButtonsTitle" xml:space="preserve">
+    <value>Кнопки активации</value>
+  </data>
+  <data name="DoneTitle" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="LanguageTitle" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>от ShiWarai</value>
+  </data>
+  <data name="DeleteFileMess" xml:space="preserve">
+    <value>Файл будет удален! Ты уверен?</value>
+  </data>
+  <data name="NotLanguage" xml:space="preserve">
+    <value>Этот язык не существует!</value>
+  </data>
+  <data name="LoggerIsEnabled" xml:space="preserve">
+    <value>Логгер включен</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
 </root>

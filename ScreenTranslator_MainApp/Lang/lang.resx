@@ -133,12 +133,27 @@
     <value>Activation buttons</value>
   </data>
   <data name="TranslateWayTitle" xml:space="preserve">
-    <value>Translation way</value>
+    <value>Translation method</value>
   </data>
   <data name="LogWayTitle" xml:space="preserve">
     <value>Location to save logs file</value>
   </data>
   <data name="aTranslation" xml:space="preserve">
     <value>Translation</value>
+  </data>
+  <data name="DeleteFileMess" xml:space="preserve">
+    <value>The file will be deleted! Are you sure?</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="LoggerIsEnabled" xml:space="preserve">
+    <value>Logger is enabled</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="NotLanguage" xml:space="preserve">
+    <value>This language isn't exist!</value>
   </data>
 </root>

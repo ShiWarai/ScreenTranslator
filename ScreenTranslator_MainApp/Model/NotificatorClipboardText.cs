@@ -10,10 +10,10 @@ namespace ScreenTranslator_MainApp.Model
     {
         public NotificatorClipboardText()
         {
-            ActivatorEvent += NotificatorClipboardText_ActivatorEvent;
+            DeactivatorEvent += NotificatorClipboardText_DeactivatorEvent;
         }
 
-        private void NotificatorClipboardText_ActivatorEvent()
+        private void NotificatorClipboardText_DeactivatorEvent()
         {
             var text = new ClipboardText();
             ShowNotification(LanguageData.GetStringFromResource("aTranslation"), text.TranslatedText, Notifications.Wpf.NotificationType.Information);

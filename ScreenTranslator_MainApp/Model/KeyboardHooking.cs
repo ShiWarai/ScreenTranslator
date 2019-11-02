@@ -12,33 +12,58 @@ namespace ScreenTranslator_MainApp.Model
     {
         private IKeyboardMouseEvents m_GlobalHook;
         private Keys activeKey;
-        private WaitingForKeyEvent waiter;
+        static private WaitingForKeyEvent EventWaiter;
 
-        public KeyboardHooking()
+        static public void ChangeFunction(WaitingForKeyEvent waiting)
+        {
+            EventWaiter = waiting;
+        }
+
+        /// <summary>
+        /// Hooking для клавиш, с последующим запуском события
+        /// </summary>
+        /// <param name="func"></param>
+        public KeyboardHooking(WaitingForKeyEvent func)
         {
             m_GlobalHook = Hook.GlobalEvents();
+            EventWaiter = func;
         }
 
         ~KeyboardHooking()
         {
-            ScreenTranslatorDisactivate();
+            Disactivate();
         }
 
-        public void Start(Keys key, WaitingForKeyEvent obj)
+        /// <summary>
+        /// Запускает hooking
+        /// </summary>
+        /// <param name="key">Ожидаемая клавиша</param>
+        public void Start(Keys key = Keys.G)
         {
             activeKey = key;
-            waiter = obj;
-            ScreenTranslatorActivate();
+            Activate();
         }
 
-        private void ScreenTranslatorActivate()
+        public void Stop()
+        {
+            Disactivate();
+            EventWaiter = null;
+        }
+
+        public void Pause()
+        {
+            m_GlobalHook.KeyDown -= ActiveKey_Down;
+            m_GlobalHook.KeyUp -= ActiveKey_Up;
+        }
+
+        private void Activate()
         {
             // Create a rectangle of cursor positions
             m_GlobalHook.KeyDown += ActiveKey_Down;
             m_GlobalHook.KeyUp += ActiveKey_Up;
         }
 
-        private void ScreenTranslatorDisactivate()
+        private void Disactivate()
         {
             m_GlobalHook.KeyDown -= ActiveKey_Down;
             m_GlobalHook.KeyUp -= ActiveKey_Up;
@@ -47,13 +72,13 @@ namespace ScreenTranslator_MainApp.Model
         private void ActiveKey_Up(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == activeKey)
-                waiter.Activate(WaitingForKeyEvent.Events.KeyUp);
+                EventWaiter.Activate(WaitingForKeyEvent.Events.KeyUp);
         }
 
         private void ActiveKey_Down(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == activeKey)
-                waiter.Activate(WaitingForKeyEvent.Events.KeyDown);
+                EventWaiter.Activate(WaitingForKeyEvent.Events.KeyDown);
         }
     }
 }

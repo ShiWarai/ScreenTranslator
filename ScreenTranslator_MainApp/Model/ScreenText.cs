@@ -19,7 +19,7 @@ namespace ScreenTranslator_MainApp.Model
         public ScreenText(MouseRectangle coordinates) : base()
         {
             text = 
-                TextFromImage(ScreenShot(coordinates.First.X, coordinates.First.Y, coordinates.Second.X, coordinates.Second.Y));
+                TextFromImage(ScreenShot(coordinates));
         }
 
         private string TextFromImage(Image image)
@@ -29,21 +29,38 @@ namespace ScreenTranslator_MainApp.Model
             return result.Text;
         }
 
-        private Image ScreenShot(int x0,int y0,int x1,int y1)
+        private Image ScreenShot(MouseRectangle coordinates)
         {
             System.Drawing.Image BM = Pranas.ScreenshotCapture.TakeScreenshot();
-            BM = CutImage(new Bitmap(BM),new Rectangle(x0,y0,x1,y1));
+
+            BM = CutImage(new Bitmap(BM),GetCorrectRectangle(coordinates));
+            BM.Save("Test.bmp");
+
             return BM;
+        }
+
+        /// <summary>
+        /// Возвращает прямоугольник по координатам
+        /// </summary>
+        /// <param name="coordinates"></param>
+        /// <returns></returns>
+        private Rectangle GetCorrectRectangle(MouseRectangle coordinates)
+        {
+            return new Rectangle(
+                Math.Min(coordinates.First.X, coordinates.Second.X),
+                Math.Min(coordinates.First.Y, coordinates.Second.Y),
+                Math.Abs(coordinates.First.X - coordinates.Second.X),
+                Math.Abs(coordinates.First.Y - coordinates.Second.Y));
         }
 
         private Bitmap CutImage(Bitmap src, Rectangle rect)
         {
 
-            Bitmap bmp = new Bitmap(src.Width, src.Height); //создаем битмап
+            Bitmap bmp = new Bitmap(src.Width, src.Height);
 
             Graphics g = Graphics.FromImage(bmp);
 
-            g.DrawImage(src, 0, 0, rect, GraphicsUnit.Pixel); //перерисовываем с источника по координатам
+            g.DrawImage(src, 0, 0, rect, GraphicsUnit.Pixel);
 
             return bmp;
         }

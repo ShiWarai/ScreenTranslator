@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ScreenTranslator_MainApp.Properties;
+using ScreenTranslator_MainApp.ViewModel;
 
 namespace ScreenTranslator_MainApp.Model
 {
@@ -16,7 +17,10 @@ namespace ScreenTranslator_MainApp.Model
             get 
             {
                 if (translated_text == null)
+                {
                     Translate();
+                    AppManager.TranslationLogger.WriteToLog("From: " + text + "\nTo: " + translated_text);
+                }
                 return translated_text;
             } 
         }

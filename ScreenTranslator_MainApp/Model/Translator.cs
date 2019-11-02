@@ -15,7 +15,7 @@ namespace ScreenTranslator_MainApp.Model
     {
         static private string Key = "trnsl.1.1.20191013T000841Z.a1691e726d3b0db8.19a9f0b65a94f0e6f7aea4f246947a0b3fe1ee84";
 
-        static public string Translate(string text = "", string translation_code = "ru")
+        static public string Translate(string text = "", string translation_code = "en")
         {
             if (text.Length > 0)
             {

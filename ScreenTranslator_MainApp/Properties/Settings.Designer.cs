@@ -23,12 +23,63 @@ namespace ScreenTranslator_MainApp.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ru")]
         public string Language {
             get {
                 return ((string)(this["Language"]));
+            }
+            set {
+                this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Clipboard")]
+        public string TranslationWay {
+            get {
+                return ((string)(this["TranslationWay"]));
+            }
+            set {
+                this["TranslationWay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G")]
+        public string KeyComb {
+            get {
+                return ((string)(this["KeyComb"]));
+            }
+            set {
+                this["KeyComb"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LogWay {
+            get {
+                return ((string)(this["LogWay"]));
+            }
+            set {
+                this["LogWay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LoggerIsEnabled {
+            get {
+                return ((bool)(this["LoggerIsEnabled"]));
+            }
+            set {
+                this["LoggerIsEnabled"] = value;
             }
         }
     }
