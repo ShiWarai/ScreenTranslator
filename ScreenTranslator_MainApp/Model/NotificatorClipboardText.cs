@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using ScreenTranslator_MainApp.ViewModel;
 
 namespace ScreenTranslator_MainApp.Model
 {
@@ -16,7 +18,12 @@ namespace ScreenTranslator_MainApp.Model
         private void NotificatorClipboardText_DeactivatorEvent()
         {
             var text = new ClipboardText();
-            ShowNotification(LanguageData.GetStringFromResource("aTranslation"), text.TranslatedText, Notifications.Wpf.NotificationType.Information);
+            MainWindowVM.ThreadsControl.Start(ShowTextNotification, text);
+        }
+
+        void ShowTextNotification(object text)
+        {
+            ShowNotification(LanguageData.GetStringFromResource("aTranslation"), ((ClipboardText)text).TranslatedText, Notifications.Wpf.NotificationType.Information);
         }
     }
 }

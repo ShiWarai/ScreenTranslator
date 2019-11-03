@@ -169,9 +169,10 @@
     <Compile Include="Model\ScreenText.cs" />
     <Compile Include="Model\SettingsManager.cs" />
     <Compile Include="Model\TextInitor.cs" />
+    <Compile Include="Model\ThreadsMaster.cs" />
     <Compile Include="Model\Translator.cs" />
     <Compile Include="Model\WaitingForKeyEvent.cs" />
-    <Compile Include="ViewModel\AppManager.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

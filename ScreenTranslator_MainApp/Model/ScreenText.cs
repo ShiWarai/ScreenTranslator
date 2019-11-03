@@ -29,12 +29,11 @@ namespace ScreenTranslator_MainApp.Model
             return result.Text;
         }
 
-        private Image ScreenShot(MouseRectangle coordinates)
+        static private Image ScreenShot(MouseRectangle coordinates)
         {
             System.Drawing.Image BM = Pranas.ScreenshotCapture.TakeScreenshot();
 
             BM = CutImage(new Bitmap(BM),GetCorrectRectangle(coordinates));
-            BM.Save("Test.bmp");
 
             return BM;
         }
@@ -44,7 +43,7 @@ namespace ScreenTranslator_MainApp.Model
         /// </summary>
         /// <param name="coordinates"></param>
         /// <returns></returns>
-        private Rectangle GetCorrectRectangle(MouseRectangle coordinates)
+        static private Rectangle GetCorrectRectangle(MouseRectangle coordinates)
         {
             return new Rectangle(
                 Math.Min(coordinates.First.X, coordinates.Second.X),
@@ -53,7 +52,7 @@ namespace ScreenTranslator_MainApp.Model
                 Math.Abs(coordinates.First.Y - coordinates.Second.Y));
         }
 
-        private Bitmap CutImage(Bitmap src, Rectangle rect)
+        static private Bitmap CutImage(Bitmap src, Rectangle rect)
         {
 
             Bitmap bmp = new Bitmap(src.Width, src.Height);

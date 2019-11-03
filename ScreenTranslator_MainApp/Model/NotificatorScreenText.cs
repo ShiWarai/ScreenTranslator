@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ScreenTranslator_MainApp.ViewModel;
 using System.Windows.Forms;
@@ -38,9 +39,14 @@ namespace ScreenTranslator_MainApp.Model
 
         private void CursorRectangle_CompleteInit()
         {
-            var screenText = new ScreenText(this.CursorRectangle);
-            ShowNotification(LanguageData.GetStringFromResource("aTranslation") +":", screenText.TranslatedText, NotificationType.Information);
+            MainWindowVM.ThreadsControl.Start(ShowTextNotification, this.CursorRectangle);
             this.CursorRectangle = new MouseRectangle();
+        }
+
+        void ShowTextNotification(object CursorRectangle)
+        {
+            var screenText = new ScreenText((MouseRectangle)CursorRectangle);
+            ShowNotification(LanguageData.GetStringFromResource("aTranslation") + ":", screenText.TranslatedText, NotificationType.Information);
         }
     }
 }

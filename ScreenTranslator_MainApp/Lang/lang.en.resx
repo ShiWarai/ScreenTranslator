@@ -136,7 +136,7 @@
     <value>Translation method</value>
   </data>
   <data name="LogWayTitle" xml:space="preserve">
-    <value>Location to save logs file</value>
+    <value>Location log file</value>
   </data>
   <data name="aTranslation" xml:space="preserve">
     <value>Translation</value>

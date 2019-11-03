@@ -14,13 +14,13 @@ namespace ScreenTranslator_MainApp
     /// </summary>
     public partial class App : Application
     {
-        AppManager Controller;
+        MainWindowVM Controller;
 
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            Controller = new AppManager();
+            Controller = new MainWindowVM();
 
             await Controller.ShowWindow();
 

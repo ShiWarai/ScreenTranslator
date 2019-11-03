@@ -15,12 +15,15 @@ using System.IO;
 
 namespace ScreenTranslator_MainApp.ViewModel
 {
-    public class AppManager : INotifyPropertyChanged
+    public class MainWindowVM : INotifyPropertyChanged
     {
         public MainWindow MainWin; // Основное окно
         static private LanguageData LanguageResource;
-        private KeyboardHooking KeyHook;
         static public Logger TranslationLogger;
+        static public ThreadsMaster ThreadsControl = new ThreadsMaster();
+        private KeyboardHooking KeyHook;
+        
+
         public List<string> Languages
         {
             get
@@ -98,7 +101,7 @@ namespace ScreenTranslator_MainApp.ViewModel
         public async Task ShowWindow() 
         {
             MainWin = new MainWindow();
-            
+
             SetupLanguageDependences();
             WindowAdditionalInitialize();
             EventBinding();
@@ -107,6 +110,7 @@ namespace ScreenTranslator_MainApp.ViewModel
 
             await MainWin.Dispatcher.InvokeAsync(() => MainWin.ShowDialog());
 
+            ThreadsControl.KillThreads();
             SaveSettings(); // Сохраняем настройки перед выходом
         }
 

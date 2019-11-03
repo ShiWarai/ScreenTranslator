@@ -19,7 +19,7 @@ namespace ScreenTranslator_MainApp.Model
                 if (translated_text == null)
                 {
                     Translate();
-                    AppManager.TranslationLogger.WriteToLog("From: " + text + "\nTo: " + translated_text);
+                    MainWindowVM.TranslationLogger.WriteToLog("From: " + text + "\nTo: " + translated_text);
                 }
                 return translated_text;
             } 
